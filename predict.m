@@ -22,6 +22,22 @@ p = zeros(size(X, 1), 1);
 %
 
 
+X = [ones(m, 1) X];
+Z = Theta1 * X'; % z dimension 25x5000.  Each row is an activation unit, across traing examples.  Each column is a training example.
+A = sigmoid(Z); % same dimension of Z.
+% At this point, we've determined the values for activation unit of hidden layer, a_1_1, a_2_2,...a_25_2 for the 5000 training examples.  Each training exampleis a column.
+% We invert A, then this is just like X again.
+A = A';
+A = [ones(m, 1) A];
+
+Z2 = Theta2 * A'; 
+H = sigmoid(Z2);% H dimension is 10x5000.  Each row is for each class, and each column is for each training example.
+
+[val, p] = max(H);
+
+% we can optimize by not doing A = A' above and add a row vector of 1 in the previous step.  But for clarity, we stick with this for now.
+
+
 
 
 

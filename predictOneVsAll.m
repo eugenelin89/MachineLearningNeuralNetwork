@@ -31,7 +31,9 @@ X = [ones(m, 1) X];
 %       
 
 
-
+foo = X * all_theta'; % size(foo) = 5000, 10 where each column is g(theta'X) for each class
+bar = sigmoid(foo);   % size(bar) = 5000, 10 where each column is p for each class
+[val, p] = max(bar, [], 2);
 
 
 
